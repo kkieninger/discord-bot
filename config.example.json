@@ -1,4 +1,7 @@
 {
   "prefix": "!",
-  "token": "your-token-goes-here"
+  "token": "your-token-goes-here",
+  "roles": {
+    "newMember": "quarantined"
+  }
 }

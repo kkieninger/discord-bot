@@ -20,7 +20,7 @@ client.once("ready", () => {
  * This hook will fire when any user sends a message
  */
 client.on("message", (message) => {
-  console.log(message);
+  // console.log(message);
   const messageContent = message.content.toLowerCase();
 
   if (messageContent.includes("hello there")) {
@@ -29,12 +29,20 @@ client.on("message", (message) => {
 });
 
 /**
- * This hook will execute when a new member is added, but I can't seem
- * to figure out how to get it to send DMs to users yet.
+ * This hook listens for when new members join the server and then:
+ * 1.) Assigns them a "quarantined" role with limited permissions
+ * 2.) Sends a welcome greeting via DM
+ * 
+ * TODO:
+ * 3.) Asks a series of questions
  */
 client.on("guildMemberAdd", (member) => {
-  console.log(member);
-  member.send('hello there');
+  console.log("a new member joined");
+  const role = member.guild.roles.cache.find(
+    (role) => role.name === config.roles.newMember
+  );
+  member.roles.add(role);
+  member.send("Welcome to the server!");
 });
 
 /**
