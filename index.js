@@ -38,10 +38,16 @@ client.on("message", (message) => {
  */
 client.on("guildMemberAdd", (member) => {
   console.log("a new member joined");
+
+  // finds the role with limited permissions
   const role = member.guild.roles.cache.find(
     (role) => role.name === config.roles.newMember
   );
+
+  // adds said role to the new user
   member.roles.add(role);
+
+  // prompts the user with a welcome message
   member.send("Welcome to the server!");
 });
 
